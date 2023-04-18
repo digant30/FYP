@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styles from "../home.module.css";
 
 function App() {
-  const history = useHistory();
 
   const [Item, setItem] = useState("");
 
@@ -89,9 +87,9 @@ function App() {
 
   return (
     <div>
-      <div class={styles.topnav}>
+      <div className={styles.topnav}>
         <a href="authenticate">Authenticate</a>
-        <a class={styles.active} href="queryassethistory">Query Asset</a>
+        <a className={styles.active} href="queryassethistory">Query Asset</a>
         <a href="/">Logout</a>
       </div>
       <h1>Query Asset History</h1>

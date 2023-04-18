@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styles from "../home.module.css";
 
 function App() {
-  const history = useHistory();
-
+  
   const [Name, setName] = useState("");
   const [SName, setSName] = useState("");
   const [SellerId, setSellerId] = useState("");
@@ -16,8 +14,7 @@ function App() {
   async function AddSeller(event) {
     event.preventDefault();
 
-    const response = await fetch(
-      "http://localhost:4000/channels/mychannel/chaincodes/smartContract",
+    fetch("http://localhost:4000/channels/mychannel/chaincodes/smartContract",
       {
         method: "POST",
         headers: {
@@ -47,9 +44,9 @@ function App() {
 
   return (
     <div>
-      <div class={styles.topnav}>
+      <div className={styles.topnav}>
         <a href="addproduct">Add Product</a>
-        <a class={styles.active} href="addseller">Add Seller</a>
+        <a className={styles.active} href="addseller">Add Seller</a>
         <a href="changeowner">Change Product Manufacturer</a>
         <a href="queryseller">Query Seller</a>
         <a href="queryallsellers">Query All Sellers</a>

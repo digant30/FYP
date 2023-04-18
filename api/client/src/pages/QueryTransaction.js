@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styles from "../home.module.css";
 
 function App() {
-  const history = useHistory();
-
   const [transactionId, settransactionId] = useState("");
 
   async function QueryTransaction(event) {
@@ -30,7 +27,30 @@ function App() {
         let container = document.getElementById("container");
 
         let table = document.createElement("table");
+        table.setAttribute("class", styles.styledtable);
 
+        const titleAttributes = [
+          "Product Name",
+          "Address",
+          "Contact Number",
+          "Mail Id",
+          "Consumer Name",
+          "Product Id",
+          "Seller Id",
+          "Seller Name"
+        ];
+        let tableHead = document.createElement("thead");
+        let trTitle = document.createElement("tr");
+
+        titleAttributes.forEach((titleCard) => {
+          let th = document.createElement("th");
+          th.innerText = titleCard;
+          trTitle.appendChild(th);
+        });
+        tableHead.appendChild(trTitle);
+        
+        let tableBody = document.createElement("tbody");
+        
         data.forEach((item) => {
           let tr = document.createElement("tr");
 
@@ -41,8 +61,10 @@ function App() {
             td.innerText = elem;
             tr.appendChild(td);
           });
-          table.appendChild(tr);
+          tableBody.appendChild(tr);
         });
+        table.appendChild(tableHead);
+        table.appendChild(tableBody);
         container.appendChild(table);
       })
       .catch((error) => console.error("Error:", error));
@@ -50,24 +72,11 @@ function App() {
 
   return (
     <div>
-      <div class={styles.topnav}>
-        <a href="/">Home</a>
-        <a href="register">Register</a>
-        <a href="login">Login</a>
-        <a href="addproduct">Add Product</a>
-        <a href="addseller">Add Seller</a>
-        <a href="changeowner">Change Owner</a>
-        <a href="authenticate">Authenticate</a>
-        <a href="queryall">Query All Products</a>
-        <a href="queryprod">Query Product</a>
-        <a href="addconsumer">Add Consumer</a>
-        <a href="queryownerprod">Query Product Owner</a>
-        <a href="queryseller">Query Seller</a>
-        <a href="queryconsumer">Query Consumer</a>
-        <a class={styles.active} href="querytransaction">
-          Query Transaction
-        </a>
+      <div className={styles.topnav}>
+      <a href="authenticate">Authenticate</a>
         <a href="queryassethistory">Query Asset</a>
+        <a className={styles.active} href="querytransaction">Query Transaction</a>
+        <a href="/">Logout</a>
       </div>
       <h1>Query Transaction</h1>
       <form onSubmit={QueryTransaction}>
@@ -79,17 +88,7 @@ function App() {
         />
         <br />
 
-        <h4 id="prod"></h4>
         <input type="submit" value="Query Transaction" />
-        <thead>
-          <th>Product Name</th>
-          <th>Color</th>
-          <th>Brand</th>
-          <th>Mail</th>
-          <th>Consumer Name</th>
-          <th>Product ID</th>
-          <th>Seller ID</th>
-        </thead>
         <container id="container"></container>
       </form>
     </div>

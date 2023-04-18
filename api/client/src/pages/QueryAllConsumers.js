@@ -1,10 +1,7 @@
-import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styles from "../home.module.css";
 
 function App() {
-  const history = useHistory();
-
+  
   async function QueryAllConsumers(event) {
     event.preventDefault();
 
@@ -82,13 +79,13 @@ function App() {
 
   return (
     <div>
-      <div class={styles.topnav}>
+      <div className={styles.topnav}>
         <a href="addconsumer">Add Consumer</a>
         <a href="queryprod">Query Product</a>
         <a href="queryall">Query All Products</a>
         <a href="queryownerprod">Query Product Manufacturer</a>
         <a href="queryconsumer">Query Consumer</a>
-        <a class={styles.active} href="queryallconsumers">Query All Consumers</a>
+        <a className={styles.active} href="queryallconsumers">Query All Consumers</a>
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>

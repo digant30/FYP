@@ -1,19 +1,14 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styles from "../home.module.css";
 
 function App() {
-  const history = useHistory();
 
   const [ProductIdAuth, setAuthProductId] = useState("");
 
   async function AuthenticateProduct(event) {
     event.preventDefault();
 
-    const response = await fetch(
-      'http://localhost:4000/channels/mychannel/chaincodes/smartContract?args=["' +
-        ProductIdAuth +
-        '"]&peer=peer0.org1.example.com&fcn=authenticate',
+    fetch('http://localhost:4000/channels/mychannel/chaincodes/smartContract?args=["' +ProductIdAuth +'"]&peer=peer0.org1.example.com&fcn=authenticate',
       {
         method: "GET",
         headers: {
@@ -75,8 +70,8 @@ function App() {
 
   return (
     <div>
-      <div class={styles.topnav}>
-        <a class={styles.active} href="authenticate">Authenticate</a>
+      <div className={styles.topnav}>
+        <a className={styles.active} href="authenticate">Authenticate</a>
         <a href="queryassethistory">Query Asset</a>
         <a href="/">Logout</a>
       </div>

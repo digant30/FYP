@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styles from "../home.module.css";
 
 function App() {
-  const history = useHistory();
-
   const [sellerId, setSellerId] = useState("");
 
   async function QuerySeller(event) {
@@ -71,11 +68,11 @@ function App() {
 
   return (
     <div>
-      <div class={styles.topnav}>
+      <div className={styles.topnav}>
         <a href="addproduct">Add Product</a>
         <a href="addseller">Add Seller</a>
         <a href="changeowner">Change Product Manufacturer</a>
-        <a class={styles.active} href="queryseller">Query Seller</a>
+        <a className={styles.active} href="queryseller">Query Seller</a>
         <a href="queryallsellers">Query All Sellers</a>
         <a href="queryconsumermanu">Query Consumer</a>
         <a href="queryallconsumersmanu">Query All Consumers</a> 

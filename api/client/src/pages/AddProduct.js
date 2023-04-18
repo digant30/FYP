@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import styles from "../home.module.css";
 
 function App() {
-  const history = useHistory();
-
+  
   const [ProductName, setName] = useState("");
   const [ProductId, setProductId] = useState("");
   const [SellerId, setSellerId] = useState("");
@@ -57,8 +55,8 @@ function App() {
 
   return (
     <div>
-      <div class={styles.topnav}>
-        <a class={styles.active} href="addproduct">
+      <div className={styles.topnav}>
+        <a className={styles.active} href="addproduct">
           Add Product
         </a>
         <a href="addseller">Add Seller</a>
