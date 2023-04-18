@@ -71,7 +71,7 @@ function App() {
     <html>
       <body>
         <div>
-          <h1>Login</h1>
+          <h1>Manufacturer Login</h1>
           <form onSubmit={LoginUser}>
             <input
               value={username}

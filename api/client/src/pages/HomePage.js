@@ -6,10 +6,11 @@ function App() {
       <div>
         <h1> FAKE PRODUCT IDENTIFICATION </h1>
       </div>
-      <a class={styles.active} href="/">
-        Home
-      </a>
+      <a href="/">Home</a>
       <a href="register">Register</a>
+      <a href="login">Manufacturer</a>
+      <a href="sellerlogin">Seller</a>
+      <a href="consumerlogin">Consumer</a>
     </div>
   );
 }

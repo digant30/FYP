@@ -8,13 +8,14 @@ function App() {
   const [orgName, setOrgName] = useState("");
   const [responseData, setResponseData] = useState("");
 
-  async function registerUser(event) {
+  async function LoginUser(event) {
     event.preventDefault();
 
-    fetch("http://localhost:4000/users", {
+    fetch("http://localhost:4000/users/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
         username,
@@ -28,17 +29,18 @@ function App() {
       .then(function (data) {
         console.log(data);
         var token = document.getElementById("token");
-        localStorage.setItem("token", data.token);
-        //window.$token = data.token;
-        //console.log(window.$token);
         //var body = document.getElementById("bd");
         token.innerHTML = localStorage.getItem("token");
-        window.location.href = "http://localhost:3000/login";
+        console.log(localStorage.getItem("token"));
         //body.innerHTML = data.body;
+        // window.$token = data.token;
+        // var variable = window.$token;
+        // console.log(window.$token);
+        window.location.href = "http://localhost:3000/authenticate";
       })
       .catch((error) => console.error("Error:", error));
 
-    // const response = await fetch("http://localhost:1337/register", {
+    // const response = await fetch("http://localhost:1337/login", {
     //   method: "POST",
     //   headers: {
     //     "Content-Type": "application/json",
@@ -60,39 +62,46 @@ function App() {
   function buildResponseData(data) {
     var token = document.getElementById("token");
     window.$token = data.token;
-    var body = document.getElementById("bd");
-    token.innerHTML = data.title;
-    body.innerHTML = data.body;
+    //var body = document.getElementById("bd");
+    token.innerHTML = sessionStorage.getItem("token");
+    //body.innerHTML = data.body;
   }
 
   return (
-    <div>
-      <h1>Register</h1>
-      <form onSubmit={registerUser}>
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          type="text"
-          placeholder="Username"
-        />
-        <br />
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
-        />
-        <br />
-        <input
-          value={orgName}
-          onChange={(e) => setOrgName(e.target.value)}
-          type="text"
-          placeholder="Organization Name"
-        />
-        <br />
-        <input type="submit" value="Register" />
-      </form>
-    </div>
+    <html>
+      <body>
+        <div>
+          <h1>Consumer Login</h1>
+          <form onSubmit={LoginUser}>
+            <input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              placeholder="Username"
+            />
+            <br />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+            />
+            <br />
+            <input
+              value={orgName}
+              onChange={(e) => setOrgName(e.target.value)}
+              type="text"
+              placeholder="Organization Name"
+            />
+            <br />
+            <input type="submit" value="Login" />
+          </form>
+
+          <h4 id="token"></h4>
+        </div>
+        <script></script>
+      </body>
+    </html>
   );
 }
 

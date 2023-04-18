@@ -20,6 +20,8 @@ import QueryAsset from "./pages/QueryHistoryAsset";
 import QueryAllConsumers from "./pages/QueryAllConsumers";
 import QueryAllSellers from "./pages/QueryAllSellers";
 import QueryConsumerByContactNumber from "./pages/QueryConsumerByContactNumber";
+import SellerLogin from "./pages/SellerLogin";
+import ConsumerLogin from "./pages/ConsumerLogin";
 
 const App = () => {
   return (
@@ -41,11 +43,20 @@ const App = () => {
         <Route path="/querytransaction" exact component={QueryTransaction} />
         <Route path="/queryassethistory" exact component={QueryAsset} />
         <Route path="/queryallconsumers" exact component={QueryAllConsumers} />
-        <Route path="/queryallconsumersmanu" exact component={QueryAllConsumersManu} />
+        <Route
+          path="/queryallconsumersmanu"
+          exact
+          component={QueryAllConsumersManu}
+        />
         <Route path="/queryconsumermanu" exact component={QueryConsumerManu} />
         <Route path="/queryallsellers" exact component={QueryAllSellers} />
-        <Route path="/queryconsumercontact" exact component={QueryConsumerByContactNumber} />     
-        
+        <Route
+          path="/queryconsumercontact"
+          exact
+          component={QueryConsumerByContactNumber}
+        />
+        <Route path="/sellerlogin" exact component={SellerLogin} />
+        <Route path="/consumerlogin" exact component={ConsumerLogin} />
       </BrowserRouter>
     </div>
   );
