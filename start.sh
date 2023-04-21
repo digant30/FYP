@@ -25,16 +25,16 @@ cd api
 node app.js
 
 
-# cd artifacts
+cd artifacts
 
-# docker-compose down
+docker-compose down
 
-# sleep 2
+sleep 2
 
-# docker volume prune
+docker volume prune
 
-# sleep 2
+sleep 2
 
-# docker network prune
+docker network prune
 
-# cd ..
+cd ..

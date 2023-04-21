@@ -24,7 +24,7 @@ function App() {
       .then(function (data) {
         if(data.success === false){
           window.alert("Incorrect Username/Password");
-          window.location.href = "http://localhost:3000/login";
+          window.location.href = "http://localhost:3000/sellerlogin";
         }
         else{
         console.log(data);

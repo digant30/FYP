@@ -23,7 +23,7 @@ function App() {
         },
         body: JSON.stringify({
           fcn: "createSeller",
-          peers: ["peer0.org1.example.com", "peer0.org2.example.com", "peer0.org3.example.com"],
+          peers: ["peer0.org1.example.com", "peer0.org2.example.com"],
           chaincodeName: "smartContract",
           channelName: "mychannel",
           args: [Name, SName, SellerId, Manager, MgrId, Address, Brand],
