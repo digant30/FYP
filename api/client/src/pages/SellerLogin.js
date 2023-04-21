@@ -3,7 +3,6 @@ import { useState } from "react";
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [orgName, setOrgName] = useState("");
   
   async function LoginUser(event) {
     event.preventDefault();
@@ -17,16 +16,21 @@ function App() {
       body: JSON.stringify({
         username,
         password,
-        orgName,
       }),
     })
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
+        if(data.success === false){
+          window.alert("Register First");
+          window.location.href = "http://localhost:3000/login";
+        }
+        else{
         console.log(data);
         console.log(localStorage.getItem("token"));
         window.location.href = "http://localhost:3000/addconsumer";
+        }
       })
       .catch((error) => console.error("Error:", error));
   }
@@ -49,13 +53,6 @@ function App() {
               onChange={(e) => setPassword(e.target.value)}
               type="password"
               placeholder="Password"
-            />
-            <br />
-            <input
-              value={orgName}
-              onChange={(e) => setOrgName(e.target.value)}
-              type="text"
-              placeholder="Organization Name"
             />
             <br />
             <input type="submit" value="Login" />

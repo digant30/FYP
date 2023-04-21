@@ -54,12 +54,12 @@ app.set('secret', 'thisismysecret');
 app.use(expressJWT({
 	secret: 'thisismysecret'
 }).unless({
-	path: ['/users', '/users/login']
+	path: ['/users', '/users/login', '/consumer', '/consumer/login']
 }));
 app.use(bearerToken());
 app.use(function (req, res, next) {
 	logger.debug(' ------>>>>>> new request for %s', req.originalUrl);
-	if (req.originalUrl.indexOf('/users') >= 0 || req.originalUrl.indexOf('/users/login') >= 0) {
+	if (req.originalUrl.indexOf('/users') >= 0 || req.originalUrl.indexOf('/users/login') >= 0 || req.originalUrl.indexOf('/consumer') >= 0 || req.originalUrl.indexOf('/consumer/login') >= 0) {
 		return next();
 	}
 
@@ -108,7 +108,47 @@ function getErrorMessage(field) {
 app.post('/users', async function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
-	var orgName = req.body.orgName;
+	var orgName = "Org1";
+	logger.debug('End point : /users');
+	logger.debug('User name : ' + username);
+	logger.debug('Password : ' + password);
+	logger.debug('Org name  : ' + orgName);
+	if (!username) {
+		res.json(getErrorMessage('\'username\''));
+		return;
+	}
+	if (!password) {
+		res.json(getErrorMessage('\'password\''));
+		return;
+	}
+	if (!orgName) {
+		res.json(getErrorMessage('\'orgName\''));
+		return;
+	}
+	var token = jwt.sign({
+		exp: Math.floor(Date.now() / 1000) + parseInt(hfc.getConfigSetting('jwt_expiretime')),
+		username: username,
+		password: password,
+		orgName: orgName
+	}, app.get('secret'));
+	let response = await helper.getRegisteredUser(username, password, orgName, true);
+	logger.debug('-- returned from registering the username %s password %s for organization %s', username, password, orgName);
+	if (response && typeof response !== 'string') {
+		logger.debug('Successfully registered the username %s password %s for organization %s', username, password, orgName);
+		response.token = token;
+		res.json(response);
+	} else {
+		logger.debug('Failed to register the username %s password %s for organization %s with::%s', username, password, orgName, response);
+		res.json({ success: false, message: response });
+	}
+
+});
+
+// Register and enroll consumer
+app.post('/consumer', async function (req, res) {
+	var username = req.body.username;
+	var password = req.body.password;
+	var orgName = "Org2";
 	logger.debug('End point : /users');
 	logger.debug('User name : ' + username);
 	logger.debug('Password : ' + password);
@@ -148,7 +188,47 @@ app.post('/users', async function (req, res) {
 app.post('/users/login', async function (req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
-	var orgName = req.body.orgName;
+	var orgName = "Org1";
+	logger.debug('End point : /users/login');
+	logger.debug('User name : ' + username);
+	logger.debug('Password : ' + password);
+	logger.debug('Org name  : ' + orgName);
+	if (!username) {
+		res.json(getErrorMessage('\'username\''));
+		return;
+	}
+	if (!password) {
+		res.json(getErrorMessage('\'password\''));
+		return;
+	}
+	if (!orgName) {
+		res.json(getErrorMessage('\'orgName\''));
+		return;
+	}
+	var token = jwt.sign({
+		exp: Math.floor(Date.now() / 1000) + parseInt(hfc.getConfigSetting('jwt_expiretime')),
+		username: username,
+		password: password,
+		orgName: orgName
+	}, app.get('secret'));
+	let response = await helper.isUserRegistered(username, password, orgName, true);
+	logger.debug('-- returned from logging in the username %s password %s for organization %s', username, password, orgName);
+	if (response && typeof response !== 'string') {
+		logger.debug('Successfully logged in the username %s password %s for organization %s', username, password, orgName);
+		response.token = token;
+		res.json(response);
+	} else {
+		logger.debug('Failed to login the username %s password %s for organization %s with::%s. Register first', username, password, orgName, response);
+		res.json({ success: false, message: response });
+	}
+
+});
+
+//Login
+app.post('/consumer/login', async function (req, res) {
+	var username = req.body.username;
+	var password = req.body.password;
+	var orgName = "Org2";
 	logger.debug('End point : /users/login');
 	logger.debug('User name : ' + username);
 	logger.debug('Password : ' + password);

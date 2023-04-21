@@ -20,7 +20,7 @@ services:
     volumes:
       - ./channel/crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
       - ./channel/crypto-config/peerOrganizations/org1.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-      - /var/pavan/ca-org1:/etc/hyperledger
+      - /var/digant/ca-org1:/etc/hyperledger
     container_name: ca.org1.example.com
     hostname: ca.org1.example.com
     networks:
@@ -42,7 +42,7 @@ services:
     volumes:
       - ./channel/crypto-config/peerOrganizations/org2.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
       - ./channel/crypto-config/peerOrganizations/org2.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
-      - /var/pavan/ca-org2:/etc/hyperledger
+      - /var/digant/ca-org2:/etc/hyperledger
     container_name: ca.org2.example.com
     hostname: ca.org2.example.com
     networks:
@@ -82,7 +82,7 @@ services:
       - ./channel/genesis.block:/var/hyperledger/orderer/genesis.block
       - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
       - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls:/var/hyperledger/orderer/tls
-      - /var/pavan/orderer:/var/hyperledger/production
+      - /var/digant/orderer:/var/hyperledger/production
 
   orderer2.example.com:
     container_name: orderer2.example.com
@@ -118,7 +118,7 @@ services:
       - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
       - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/orderer/msp
       - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls:/var/hyperledger/orderer/tls
-      - /var/pavan/orderer2:/var/hyperledger/production
+      - /var/digant/orderer2:/var/hyperledger/production
   orderer3.example.com:
     container_name: orderer3.example.com
     image: hyperledger/fabric-orderer:2.1
@@ -153,7 +153,7 @@ services:
       - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
       - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/orderer/msp
       - ./channel/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls:/var/hyperledger/orderer/tls
-      - /var/pavan/orderer3:/var/hyperledger/production
+      - /var/digant/orderer3:/var/hyperledger/production
   couchdb0:
     container_name: couchdb0
     image: hyperledger/fabric-couchdb
@@ -239,7 +239,7 @@ services:
       - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/crypto/peer/tls
       - /var/run/:/host/var/run/
       - ./channel/:/etc/hyperledger/channel/
-      - /var/pavan/peer0-org1:/var/hyperledger/production
+      - /var/digant/peer0-org1:/var/hyperledger/production
     networks:
       - test
 
@@ -281,7 +281,7 @@ services:
       - ./channel/crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/crypto/peer/tls
       - /var/run/:/host/var/run/
       - ./channel/:/etc/hyperledger/channel/
-      - /var/pavan/peer1-org1:/var/hyperledger/production
+      - /var/digant/peer1-org1:/var/hyperledger/production
     networks:
       - test
 
@@ -323,7 +323,7 @@ services:
       - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/crypto/peer/tls
       - /var/run/:/host/var/run/
       - ./channel/:/etc/hyperledger/channel/
-      - /var/pavan/peer0-org2:/var/hyperledger/production
+      - /var/digant/peer0-org2:/var/hyperledger/production
     networks:
       - test
 
@@ -365,6 +365,6 @@ services:
       - ./channel/crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls:/etc/hyperledger/crypto/peer/tls
       - /var/run/:/host/var/run/
       - ./channel/:/etc/hyperledger/channel/
-      - /var/pavan/peer1-org2:/var/hyperledger/production
+      - /var/digant/peer1-org2:/var/hyperledger/production
     networks:
       - test

@@ -23,7 +23,7 @@ function App() {
         },
         body: JSON.stringify({
           fcn: "createSeller",
-          peers: ["peer0.org1.example.com", "peer0.org2.example.com"],
+          peers: ["peer0.org1.example.com", "peer0.org2.example.com", "peer0.org3.example.com"],
           chaincodeName: "smartContract",
           channelName: "mychannel",
           args: [Name, SName, SellerId, Manager, MgrId, Address, Brand],
@@ -35,9 +35,8 @@ function App() {
     .then(function (data) {
       alert("Seller added successfully");
       console.log(data);
-      var token = document.getElementById("tx_id");
-      token.innerHTML = data.result.tx_id;
       window.location.href = "http://localhost:3000/addseller";
+      window.location.reload(true);
     })
     .catch((error) => console.error("Error:", error));
   }

@@ -7,9 +7,8 @@ function App() {
         <h1> FAKE PRODUCT IDENTIFICATION </h1>
       </div>
       <a href="/">Home</a>
-      <a href="login">Manufacturer</a>
-      <a href="sellerlogin">Seller</a>
-      <a href="consumerlogin">Consumer</a>
+      <a href="consumerregister">Register</a>
+      <a href="consumerlogin">Login</a>
     </div>
   );
 }

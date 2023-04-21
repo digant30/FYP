@@ -24,7 +24,7 @@ function App() {
       },
       body: JSON.stringify({
         fcn: "createProduct",
-        peers: ["peer0.org1.example.com", "peer0.org2.example.com"],
+        peers: ["peer0.org1.example.com", "peer0.org2.example.com", "peer0.org3.example.com"],
         chaincodeName: "smartContract",
         channelName: "mychannel",
         args: [
@@ -46,9 +46,8 @@ function App() {
       .then(function (data) {
         alert("Product added successfully");
         console.log(data);
-        var token = document.getElementById("transactionId");
-        token.innerHTML = data.result.tx_id;
         window.location.href = "http://localhost:3000/addproduct";
+        window.location.reload(true);
       })
       .catch((error) => console.error("Error:", error));
   }

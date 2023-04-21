@@ -3,8 +3,7 @@ import { useState } from "react";
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [orgName, setOrgName] = useState("");
-
+  
   async function registerUser(event) {
     event.preventDefault();
 
@@ -16,7 +15,6 @@ function App() {
       body: JSON.stringify({
         username,
         password,
-        orgName,
       }),
     })
       .then(function (response) {
@@ -46,13 +44,6 @@ function App() {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-        />
-        <br />
-        <input
-          value={orgName}
-          onChange={(e) => setOrgName(e.target.value)}
-          type="text"
-          placeholder="Organization Name"
         />
         <br />
         <input type="submit" value="Register" />

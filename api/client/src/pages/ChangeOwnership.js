@@ -17,7 +17,7 @@ function App() {
       },
       body: JSON.stringify({
         fcn: "changeProductOwner",
-        peers: ["peer0.org1.example.com", "peer0.org2.example.com"],
+        peers: ["peer0.org1.example.com", "peer0.org2.example.com", "peer0.org3.example.com"],
         chaincodeName: "smartContract",
         channelName: "mychannel",
         args: [ProductId, Owner],
@@ -29,7 +29,8 @@ function App() {
       .then(function (data) {
         alert("Product ownership changed successfully");
         console.log(data);
-        window.location.href = "http://localhost:3000/authenticate";
+        window.location.href = "http://localhost:3000/changeowner";
+        window.location.reload(true);
       })
       .catch((error) => console.error("Error:", error));
   }

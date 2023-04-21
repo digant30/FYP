@@ -57,6 +57,7 @@ createChannel(){
 removeOldCrypto(){
     rm -rf ./api/crypto/*
     rm -rf ./api/fabric-client-kv-org1/*
+    rm -rf ./api/fabric-client-kv-org2/*
 }
 
 
@@ -81,11 +82,12 @@ updateAnchorPeers(){
     
     setGlobalsForPeer0Org2
     peer channel update -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com -c $CHANNEL_NAME -f ./artifacts/channel/${CORE_PEER_LOCALMSPID}anchors.tx --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA
-    
 }
 
 #removeOldCrypto
 
 createChannel
+sleep 5
 joinChannel
+sleep 5
 updateAnchorPeers
