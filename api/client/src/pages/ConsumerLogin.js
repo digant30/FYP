@@ -23,7 +23,7 @@ function App() {
       })
       .then(function (data) {
         if(data.success === false){
-          window.alert("Register First");
+          window.alert("Incorrect Username/Password");
           window.location.href = "http://localhost:3000/login";
         }
         else{
