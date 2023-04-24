@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../home.module.css";
+import background from "/home/digant/FYP/api/client/src/images/factory.png"
 
 function App() {
   
@@ -47,7 +48,7 @@ function App() {
         <a href="queryallconsumersmanu">Query All Consumers</a> 
         <a href="/">Logout</a>
       </div>
-      <h1>Change Ownership</h1>
+      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 500px`}}>
       <form onSubmit={ChangeOwnership}>
         <input
           value={ProductId}
@@ -65,6 +66,7 @@ function App() {
         <br />
         <input type="submit" value="Change Manufacturer" />
       </form>
+      </div>
     </div>
   );
 }

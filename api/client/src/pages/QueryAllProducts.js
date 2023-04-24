@@ -1,4 +1,5 @@
 import styles from "../home.module.css";
+import background from "/home/digant/FYP/api/client/src/images/product.jpeg"
 
 function App() {
   
@@ -91,12 +92,13 @@ function App() {
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>
-      <h1>Query All Products</h1>
+      <div className={styles.forms} style={{backgroundImage: `url(${background})`}}>
       <form onSubmit={QueryAllProducts}>
         
         <input type="submit" value="Query All" />
         <container id="container"></container>
       </form>
+      </div>
     </div>
   );
 }

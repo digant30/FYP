@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../home.module.css";
+import background from "/home/digant/FYP/api/client/src/images/fake.jpg"
 
 function App() {
 
@@ -75,7 +76,7 @@ function App() {
         <a href="queryassethistory">Query Asset</a>
         <a href="/">Logout</a>
       </div>
-      <h1>Authenticate Product</h1>
+      <div className={styles.forms} style={{backgroundImage: `url(${background})`}}>
       <form onSubmit={AuthenticateProduct}>
         <input
           value={ProductIdAuth}
@@ -88,6 +89,7 @@ function App() {
 
         <container id="container"></container>
       </form>
+      </div>
     </div>
   );
 }

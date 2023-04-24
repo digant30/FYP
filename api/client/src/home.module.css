@@ -1,7 +1,50 @@
+
+.main{
+  background-image: url(/home/digant/FYP/api/client/src/images/pic1.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 90vh;
+
+}
+
 .topnav {
   background-color: #333;
   overflow: hidden;
+  border-radius: 10px;
+  text-align: center;
+  font: 1.5em Georgia, serif;
 }
+
+.intro {
+  background-color: #333;
+  color: white;
+  font: 1.2em Georgia, serif;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.form{
+  background-image: url(/home/digant/FYP/api/client/src/images/register.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font: Georgia, serif;
+  height: 90vh;
+  text-align: center;
+  align-items: center;
+  color: white;
+}
+
+.forms{
+  background-image: url(/home/digant/FYP/api/client/src/images/product.jpeg);
+  background-repeat: no-repeat;
+  background-size: 1800px 900px;
+  font: Georgia, serif;
+  height: 90vh;
+  text-align: center;
+  align-items: center;
+  color: white;
+}
+
 
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -26,23 +69,35 @@
 }
 
 input[type=text], select, input[type=email], input[type=password] {
-  width: 100%;
+  width: 40%;
+  text-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: auto;
+  padding-right: auto;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
 input[type=submit] {
-  width: 100%;
+  width: 40%;
+  text-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: auto;
+  padding-right: auto;
   background-color: #4CAF50;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 

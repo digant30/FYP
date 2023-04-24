@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "../home.module.css";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -29,7 +30,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={styles.form}>
       <h1>Register</h1>
       <form onSubmit={registerUser}>
         <input
