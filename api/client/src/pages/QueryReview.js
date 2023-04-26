@@ -41,6 +41,7 @@ function App() {
 
         const titleAttributes = [
           "Product Name",
+          "Seller Name",
           "Review"
         ];
         let tableHead = document.createElement("thead");

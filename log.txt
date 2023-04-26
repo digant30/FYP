@@ -1,2 +1,2 @@
 Installed chaincodes on peer:
-Package ID: smartContract_1:1fa8291e6523cca077fa483601de5bc7b710a91f0b4264eca8d7ee49fbc9d02f, Label: smartContract_1
+Package ID: smartContract_1:e068721c054b2d9ed4eca8b4026b9835c493a83b08405c23c035ffecaddb6b22, Label: smartContract_1

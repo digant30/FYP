@@ -5,6 +5,7 @@ import background from "/home/digant/FYP/api/client/src/images/fake.jpg";
 function App() {
     const [Review1, setReview1] = useState("");
   const [Name, setName] = useState("");
+  const [SelName, setSelName] = useState("");
   const [Review, setReview] = useState("");
   
   async function AddReview(event) {
@@ -22,7 +23,7 @@ function App() {
           peers: ["peer0.org1.example.com", "peer0.org2.example.com"],
           chaincodeName: "smartContract",
           channelName: "mychannel",
-          args: [Review1, Name, Review],
+          args: [Review1, Name, SelName, Review],
         }),
       }
     ).then(function (response) {
@@ -60,6 +61,13 @@ function App() {
           onChange={(e) => setName(e.target.value)}
           type="text"
           placeholder="Product Name"
+        />
+        <br />
+        <input
+          value={SelName}
+          onChange={(e) => setSelName(e.target.value)}
+          type="text"
+          placeholder="Seller Name"
         />
         <br />
         <input

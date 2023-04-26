@@ -53,6 +53,7 @@ type Consumer struct {
 }
 type Review struct {
 	ProdName string `json:"prodname"`
+	SelName  string `json:"sellername"`
 	Review   string `json:"review"`
 }
 
@@ -172,7 +173,7 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 	}
 
 	review := []Review{
-		Review{ProdName: "Adidas Runtastic", Review: "5"},
+		Review{ProdName: "Adidas Runtastic", SelName: "JP Stores", Review: "5"},
 	}
 
 	i := 0
@@ -282,14 +283,22 @@ func (s *SmartContract) createConsumer(APIstub shim.ChaincodeStubInterface, args
 
 func (s *SmartContract) addreview(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
-	if len(args) != 3 {
-		return shim.Error("Incorrect number of arguments. Expecting 9")
+	if len(args) != 4 {
+		return shim.Error("Incorrect number of arguments. Expecting 4")
 	}
 
-	var review = Review{ProdName: args[1], Review: args[2]}
+	var review = Review{ProdName: args[1], SelName: args[2], Review: args[3]}
 
 	productAsBytes, _ := json.Marshal(review)
 	APIstub.PutState(args[0], productAsBytes)
+
+	indexName := "SelName~key"
+	colorNameIndexKey, err := APIstub.CreateCompositeKey(indexName, []string{review.SelName, args[0]})
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	value := []byte{0x00}
+	APIstub.PutState(colorNameIndexKey, value)
 
 	indexName2 := "ProdName~key"
 	colorNameIndexKey2, err2 := APIstub.CreateCompositeKey(indexName2, []string{review.ProdName, args[0]})
@@ -693,6 +702,7 @@ func (s *SmartContract) changeProductOwner(APIstub shim.ChaincodeStubInterface, 
 	if err != nil {
 		return shim.Error(err.Error())
 	}
+
 	value := []byte{0x00}
 	APIstub.PutState(colorNameIndexKey, value)
 

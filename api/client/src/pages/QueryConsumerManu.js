@@ -34,12 +34,12 @@ function App() {
         table.setAttribute("class", styles.styledtable);
 
         const titleAttributes = [
-          "Product Name",
           "Address",
           "Contact Number",
           "Mail Id",
           "Consumer Name",
           "Product Id",
+          "Product Name",
           "Seller Id",
           "Seller Name"
         ];

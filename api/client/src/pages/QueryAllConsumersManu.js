@@ -30,12 +30,12 @@ function App() {
 
         const titleAttributes = [
           "Consumer Number",
-          "Product Name",
           "Address",
           "Contact Number",
           "Mail Id",
           "Consumer Name",
           "Product Id",
+          "Product Name",
           "Seller Id",
           "Seller Name"
         ];
