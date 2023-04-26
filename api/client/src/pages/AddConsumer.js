@@ -70,7 +70,7 @@ function App() {
           value={Consumer}
           onChange={(e) => setConsumer(e.target.value)}
           type="text"
-          placeholder="Consumer Name"
+          placeholder="Consumer Number"
         />
         <br />
         <input

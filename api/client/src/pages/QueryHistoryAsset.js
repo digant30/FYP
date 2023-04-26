@@ -91,6 +91,8 @@ function App() {
       <div className={styles.topnav}>
         <a href="authenticate">Authenticate</a>
         <a className={styles.active} href="queryassethistory">Query Asset</a>
+        <a href="addreview">Add Review</a>
+        <a href="queryreview">Query Review</a>
         <a href="/">Logout</a>
       </div>
       <div className={styles.forms} style={{backgroundImage: `url(${background})`}}>

@@ -16,7 +16,7 @@ function App() {
 
   async function AddProduct(event) {
     event.preventDefault();
-
+    console.time();
     fetch("http://localhost:4000/channels/mychannel/chaincodes/smartContract", {
       method: "POST",
       headers: {
@@ -42,6 +42,7 @@ function App() {
       }),
     })
       .then(function (response) {
+        console.timeEnd();
         return response.json();
       })
       .then(function (data) {
@@ -60,14 +61,14 @@ function App() {
           Add Product
         </a>
         <a href="addseller">Add Seller</a>
-        <a href="changeowner">Change Product Manufacturer</a>
+        <a href="changeowner">Change Product Owner</a>
         <a href="queryseller">Query Seller</a>
         <a href="queryallsellers">Query All Sellers</a>
         <a href="queryconsumermanu">Query Consumer</a>
         <a href="queryallconsumersmanu">Query All Consumers</a> 
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`}}>
+      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 200px`}}>
       <form onSubmit={AddProduct}>
         <input
           value={Item}
@@ -136,6 +137,8 @@ function App() {
         <input type="submit" value="Add Product" />
       </form>
       </div>
+      <script>
+      </script>
     </div>
   );
 }

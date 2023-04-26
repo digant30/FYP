@@ -43,13 +43,17 @@ type Seller struct {
 // Consumer :  Define the product structure, with 8 properties.  Structure tags are used by encoding/json library
 type Consumer struct {
 	ProdId   string `json:"prodid"`
-	ProdName string `json:"prodname`
+	ProdName string `json:"prodname"`
 	Name     string `json:"name"`
 	Address  string `json:"address"`
 	Contact  string `json:"contact"`
 	Mail     string `json:"mail"`
 	SelId    string `json:"sellerid"`
 	SelName  string `json:"sellername"`
+}
+type Review struct {
+	ProdName string `json:"prodname"`
+	Review   string `json:"review"`
 }
 
 // Init ;  Method for initializing smart contract
@@ -97,6 +101,10 @@ func (s *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response 
 		return s.queryConsumerContact(APIstub, args)
 	case "authenticate":
 		return s.authenticate(APIstub, args)
+	case "addreview":
+		return s.addreview(APIstub, args)
+	case "queryreview":
+		return s.queryreview(APIstub, args)
 	case "restictedMethod":
 		return s.restictedMethod(APIstub, args)
 	case "test":
@@ -163,6 +171,10 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 		Consumer{ProdId: "A0000001", ProdName: "Adidas Runtastic", Name: "Shilpa", Address: "Guindy", Contact: "9191923456", Mail: "shilpa@gmail.com", SelId: "S28432", SelName: "JP Stores"},
 	}
 
+	review := []Review{
+		Review{ProdName: "Adidas Runtastic", Review: "5"},
+	}
+
 	i := 0
 	for i < len(products) {
 		productAsBytes, _ := json.Marshal(products[i])
@@ -182,6 +194,13 @@ func (s *SmartContract) initLedger(APIstub shim.ChaincodeStubInterface) sc.Respo
 		consumerAsBytes, _ := json.Marshal(consumers[k])
 		APIstub.PutState("CONSUMER"+strconv.Itoa(k), consumerAsBytes)
 		k = k + 1
+	}
+
+	l := 0
+	for l < len(review) {
+		reviewAsBytes, _ := json.Marshal(review[l])
+		APIstub.PutState("REVIEW"+strconv.Itoa(l), reviewAsBytes)
+		l = l + 1
 	}
 
 	return shim.Success(nil)
@@ -261,6 +280,82 @@ func (s *SmartContract) createConsumer(APIstub shim.ChaincodeStubInterface, args
 	return shim.Success(consumerAsBytes)
 }
 
+func (s *SmartContract) addreview(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+	if len(args) != 3 {
+		return shim.Error("Incorrect number of arguments. Expecting 9")
+	}
+
+	var review = Review{ProdName: args[1], Review: args[2]}
+
+	productAsBytes, _ := json.Marshal(review)
+	APIstub.PutState(args[0], productAsBytes)
+
+	indexName2 := "ProdName~key"
+	colorNameIndexKey2, err2 := APIstub.CreateCompositeKey(indexName2, []string{review.ProdName, args[0]})
+	if err2 != nil {
+		return shim.Error(err2.Error())
+	}
+	value2 := []byte{0x00}
+	APIstub.PutState(colorNameIndexKey2, value2)
+
+	return shim.Success(productAsBytes)
+}
+
+func (S *SmartContract) queryreview(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
+
+	if len(args) != 1 {
+		return shim.Error("Incorrect number of arguments")
+	}
+	prodName := args[0]
+
+	prodAndIdResultIterator, err := APIstub.GetStateByPartialCompositeKey("ProdName~key", []string{prodName})
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+
+	defer prodAndIdResultIterator.Close()
+
+	var i int
+	var id string
+
+	var products []byte
+	bArrayMemberAlreadyWritten := false
+
+	products = append([]byte("["))
+
+	for i = 0; prodAndIdResultIterator.HasNext(); i++ {
+		responseRange, err := prodAndIdResultIterator.Next()
+		if err != nil {
+			return shim.Error(err.Error())
+		}
+
+		objectType, compositeKeyParts, err := APIstub.SplitCompositeKey(responseRange.Key)
+		if err != nil {
+			return shim.Error(err.Error())
+		}
+
+		id = compositeKeyParts[1]
+		assetAsBytes, err := APIstub.GetState(id)
+
+		if bArrayMemberAlreadyWritten == true {
+			newBytes := append([]byte(","), assetAsBytes...)
+			products = append(products, newBytes...)
+
+		} else {
+			products = append(products, assetAsBytes...)
+		}
+
+		fmt.Printf("Found a asset for index : %s asset id : %s %s", objectType, compositeKeyParts[0], compositeKeyParts[1])
+		bArrayMemberAlreadyWritten = true
+
+	}
+
+	products = append(products, []byte("]")...)
+
+	return shim.Success(products)
+}
+
 func (S *SmartContract) queryProductByOwner(APIstub shim.ChaincodeStubInterface, args []string) sc.Response {
 
 	if len(args) != 1 {
@@ -305,7 +400,7 @@ func (S *SmartContract) queryProductByOwner(APIstub shim.ChaincodeStubInterface,
 			products = append(products, assetAsBytes...)
 		}
 
-		fmt.Printf("Found a asset for index : %s asset id : ", objectType, compositeKeyParts[0], compositeKeyParts[1])
+		fmt.Printf("Found a asset for index : %s asset id : %s %s", objectType, compositeKeyParts[0], compositeKeyParts[1])
 		bArrayMemberAlreadyWritten = true
 
 	}
@@ -359,7 +454,7 @@ func (S *SmartContract) authenticate(APIstub shim.ChaincodeStubInterface, args [
 			products = append(products, assetAsBytes...)
 		}
 
-		fmt.Printf("Found a asset for index : %s asset id : ", objectType, compositeKeyParts[0], compositeKeyParts[1])
+		fmt.Printf("Found a asset for index : %s asset id : %s %s", objectType, compositeKeyParts[0], compositeKeyParts[1])
 		bArrayMemberAlreadyWritten = true
 
 	}
@@ -413,7 +508,7 @@ func (S *SmartContract) queryConsumerContact(APIstub shim.ChaincodeStubInterface
 			products = append(products, assetAsBytes...)
 		}
 
-		fmt.Printf("Found a asset for index : %s asset id : ", objectType, compositeKeyParts[0], compositeKeyParts[1])
+		fmt.Printf("Found a asset for index : %s asset id : %s %s", objectType, compositeKeyParts[0], compositeKeyParts[1])
 		bArrayMemberAlreadyWritten = true
 
 	}

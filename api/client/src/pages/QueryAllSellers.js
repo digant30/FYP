@@ -81,7 +81,7 @@ function App() {
       <div className={styles.topnav}>
         <a href="addproduct">Add Product</a>
         <a href="addseller">Add Seller</a>
-        <a href="changeowner">Change Product Manufacturer</a>
+        <a href="changeowner">Change Product Owner</a>
         <a href="queryseller">Query Seller</a>
         <a className={styles.active} href="queryallsellers">Query All Sellers</a>
         <a href="queryconsumermanu">Query Consumer</a>

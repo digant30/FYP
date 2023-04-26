@@ -127,9 +127,14 @@ color: #ffffff;
 text-align: left;
 }
 
-.styledtable th,
+.styledtable th{
+  padding: 12px 15px;
+  background-color: #009879;
+}
+
 .styledtable td {
   padding: 12px 15px;
+  background-color: black;
 }
 
 .styledtable tbody tr {

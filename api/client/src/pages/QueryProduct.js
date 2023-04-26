@@ -8,7 +8,7 @@ function App() {
 
   async function QueryProduct(event) {
     event.preventDefault();
-
+    console.time();
     fetch(
       'http://localhost:4000/channels/mychannel/chaincodes/smartContract?args=["' +
         Item +
@@ -22,6 +22,7 @@ function App() {
       }
     )
       .then(function (response) {
+        console.timeEnd();
         return response.json();
       })
       .then(function (data) {
@@ -82,7 +83,7 @@ function App() {
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`}}>
+      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 200px`}}>
       <form onSubmit={QueryProduct}>
         <input
           value={Item}

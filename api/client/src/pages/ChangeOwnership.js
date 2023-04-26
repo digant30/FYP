@@ -41,7 +41,7 @@ function App() {
       <div className={styles.topnav}>
         <a href="addproduct">Add Product</a>
         <a href="addseller">Add Seller</a>
-        <a className={styles.active} href="changeowner">Change Product Manufacturer</a>
+        <a className={styles.active} href="changeowner">Change Product Owner</a>
         <a href="queryseller">Query Seller</a>
         <a href="queryallsellers">Query All Sellers</a>
         <a href="queryconsumermanu">Query Consumer</a>
@@ -61,10 +61,10 @@ function App() {
           value={Owner}
           onChange={(e) => setOwner(e.target.value)}
           type="text"
-          placeholder="Manufacturer"
+          placeholder="Seller Name"
         />
         <br />
-        <input type="submit" value="Change Manufacturer" />
+        <input type="submit" value="Change Owner" />
       </form>
       </div>
     </div>

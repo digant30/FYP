@@ -76,7 +76,7 @@ function App() {
         <a href="addconsumer">Add Consumer</a>
         <a href="queryprod">Query Product</a>
         <a href="queryall">Query All Products</a>
-        <a href="queryownerprod">Query Product Manufacturer</a>
+        <a href="queryownerprod">Query Product Owner</a>
         <a className={styles.active} href="queryconsumer">Query Consumer</a>
         <a href="queryallconsumers">Query All Consumers</a>
         <a href="queryconsumercontact">Query Consumer By Contact</a>

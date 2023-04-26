@@ -24,6 +24,8 @@ import SellerLogin from "./pages/SellerLogin";
 import ConsumerLogin from "./pages/ConsumerLogin";
 import ConsumerRegister from "./pages/ConsumerRegister";
 import Dashboard from "./pages/Dashboard";
+import AddReview from "./pages/AddReview";
+import QueryReview from "./pages/QueryReview";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 
 const App = () => {
@@ -55,6 +57,8 @@ const App = () => {
           <Route path="/" exact component={HomePage} />
           <Route path="/consumerregister" exact component={ConsumerRegister} />
           <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/addreview" exact component={AddReview} />
+          <Route path="/queryreview" exact component={QueryReview} />
         </Switch>
       </BrowserRouter>
     </div>
