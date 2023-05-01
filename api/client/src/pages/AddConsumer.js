@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/consumer.jpg"
+import background from "/home/digant/FYP/api/client/src/images/consumer.jpg";
+
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
-  
   const [ProductName, setProductName] = useState("");
   const [ProductId, setProductId] = useState("");
   const [SellerId, setSellerId] = useState("");
@@ -47,7 +48,7 @@ function App() {
       .then(function (data) {
         alert("Consumer added successfully");
         console.log(data);
-        window.location.href = "http://localhost:3000/addconsumer";
+        window.location.href = BASE_URL + "addconsumer";
       })
       .catch((error) => console.error("Error:", error));
   }
@@ -55,7 +56,9 @@ function App() {
   return (
     <div>
       <div className={styles.topnav}>
-        <a className={styles.active} href="addconsumer">Add Consumer</a>
+        <a className={styles.active} href="addconsumer">
+          Add Consumer
+        </a>
         <a href="queryprod">Query Product</a>
         <a href="queryall">Query All Products</a>
         <a href="queryownerprod">Query Product Manufacturer</a>
@@ -64,74 +67,81 @@ function App() {
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 500px`, backgroundColor: `white`}}>
-      <form onSubmit={AddConsumer}>
-        <input
-          value={Consumer}
-          onChange={(e) => setConsumer(e.target.value)}
-          type="text"
-          placeholder="Consumer Number"
-        />
-        <br />
-        <input
-          value={ProductId}
-          onChange={(e) => setProductId(e.target.value)}
-          type="text"
-          placeholder="Product Id"
-        />
-        <br />
-        <input
-          value={ProductName}
-          onChange={(e) => setProductName(e.target.value)}
-          type="text"
-          placeholder="Product Name"
-        />
-        <br />
-        <input
-          value={SellerId}
-          onChange={(e) => setSellerId(e.target.value)}
-          type="text"
-          placeholder="Seller ID"
-        />
-        <br />
-        <input
-          value={SellerName}
-          onChange={(e) => setSellerName(e.target.value)}
-          type="text"
-          placeholder="SellerName"
-        />
-        <br />
-        <input
-          value={Name}
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-          placeholder="Consumer Name"
-        />
-        <br />
-        <input
-          value={Address}
-          onChange={(e) => setAddress(e.target.value)}
-          type="text"
-          placeholder="Address"
-        />
-        <br />
-        <input
-          value={Contact}
-          onChange={(e) => setContact(e.target.value)}
-          type="text"
-          placeholder="Contact"
-        />
-        <br />
-        <input
-          value={Mail}
-          onChange={(e) => setMail(e.target.value)}
-          type="text"
-          placeholder="Email Id"
-        />
-        <br />
+      <div
+        className={styles.forms}
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: `500px 500px`,
+          backgroundColor: `white`,
+        }}
+      >
+        <form onSubmit={AddConsumer}>
+          <input
+            value={Consumer}
+            onChange={(e) => setConsumer(e.target.value)}
+            type="text"
+            placeholder="Consumer Number"
+          />
+          <br />
+          <input
+            value={ProductId}
+            onChange={(e) => setProductId(e.target.value)}
+            type="text"
+            placeholder="Product Id"
+          />
+          <br />
+          <input
+            value={ProductName}
+            onChange={(e) => setProductName(e.target.value)}
+            type="text"
+            placeholder="Product Name"
+          />
+          <br />
+          <input
+            value={SellerId}
+            onChange={(e) => setSellerId(e.target.value)}
+            type="text"
+            placeholder="Seller ID"
+          />
+          <br />
+          <input
+            value={SellerName}
+            onChange={(e) => setSellerName(e.target.value)}
+            type="text"
+            placeholder="SellerName"
+          />
+          <br />
+          <input
+            value={Name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Consumer Name"
+          />
+          <br />
+          <input
+            value={Address}
+            onChange={(e) => setAddress(e.target.value)}
+            type="text"
+            placeholder="Address"
+          />
+          <br />
+          <input
+            value={Contact}
+            onChange={(e) => setContact(e.target.value)}
+            type="text"
+            placeholder="Contact"
+          />
+          <br />
+          <input
+            value={Mail}
+            onChange={(e) => setMail(e.target.value)}
+            type="text"
+            placeholder="Email Id"
+          />
+          <br />
 
-        <input type="submit" value="Add Consumer" />
-      </form>
+          <input type="submit" value="Add Consumer" />
+        </form>
       </div>
     </div>
   );

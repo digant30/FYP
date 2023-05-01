@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../home.module.css";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
   const [username, setUsername] = useState("");
@@ -24,7 +25,7 @@ function App() {
       .then(function (data) {
         console.log(data);
         localStorage.setItem("token", data.token);
-        window.location.href = "http://localhost:3000/consumerlogin";
+        window.location.href = BASE_URL + "consumerlogin";
       })
       .catch((error) => console.error("Error:", error));
   }

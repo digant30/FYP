@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../home.module.css";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
   const [transactionId, settransactionId] = useState("");
@@ -37,7 +38,7 @@ function App() {
           "Consumer Name",
           "Product Id",
           "Seller Id",
-          "Seller Name"
+          "Seller Name",
         ];
         let tableHead = document.createElement("thead");
         let trTitle = document.createElement("tr");
@@ -48,9 +49,9 @@ function App() {
           trTitle.appendChild(th);
         });
         tableHead.appendChild(trTitle);
-        
+
         let tableBody = document.createElement("tbody");
-        
+
         data.forEach((item) => {
           let tr = document.createElement("tr");
 
@@ -73,9 +74,11 @@ function App() {
   return (
     <div>
       <div className={styles.topnav}>
-      <a href="authenticate">Authenticate</a>
+        <a href="authenticate">Authenticate</a>
         <a href="queryassethistory">Query Asset</a>
-        <a className={styles.active} href="querytransaction">Query Transaction</a>
+        <a className={styles.active} href="querytransaction">
+          Query Transaction
+        </a>
         <a href="/">Logout</a>
       </div>
       <h1>Query Transaction</h1>

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/product.jpeg"
+import background from "/home/digant/FYP/api/client/src/images/product.jpeg";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
-
   const [Item, setItem] = useState("");
 
   async function QueryProduct(event) {
@@ -42,7 +42,7 @@ function App() {
           "Manufacturer",
           "Price",
           "Seller Id",
-          "Size"
+          "Size",
         ];
         let tableHead = document.createElement("thead");
         let trTitle = document.createElement("tr");
@@ -53,7 +53,7 @@ function App() {
           trTitle.appendChild(th);
         });
         tableHead.appendChild(trTitle);
-      
+
         let tableBody = document.createElement("tbody");
 
         let tr = document.createElement("tr");
@@ -75,7 +75,9 @@ function App() {
     <div>
       <div className={styles.topnav}>
         <a href="addconsumer">Add Consumer</a>
-        <a className={styles.active} href="queryprod">Query Product</a>
+        <a className={styles.active} href="queryprod">
+          Query Product
+        </a>
         <a href="queryall">Query All Products</a>
         <a href="queryownerprod">Query Product Manufacturer</a>
         <a href="queryconsumer">Query Consumer</a>
@@ -83,18 +85,24 @@ function App() {
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 200px`}}>
-      <form onSubmit={QueryProduct}>
-        <input
-          value={Item}
-          onChange={(e) => setItem(e.target.value)}
-          type="text"
-          placeholder="Item Number"
-        />
-        <br />
-        <input type="submit" value="Query Product" />
-        <container id="container"></container>
-      </form>
+      <div
+        className={styles.forms}
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: `500px 200px`,
+        }}
+      >
+        <form onSubmit={QueryProduct}>
+          <input
+            value={Item}
+            onChange={(e) => setItem(e.target.value)}
+            type="text"
+            placeholder="Item Number"
+          />
+          <br />
+          <input type="submit" value="Query Product" />
+          <container id="container"></container>
+        </form>
       </div>
     </div>
   );

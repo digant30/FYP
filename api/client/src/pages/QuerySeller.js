@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../home.module.css";
 import background from "/home/digant/FYP/api/client/src/images/adidas.png";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
   const [sellerId, setSellerId] = useState("");
@@ -38,7 +39,7 @@ function App() {
           "Manager Name",
           "Manager Id",
           "Store Name",
-          "Seller Id"
+          "Seller Id",
         ];
         let tableHead = document.createElement("thead");
         let trTitle = document.createElement("tr");
@@ -49,7 +50,7 @@ function App() {
           trTitle.appendChild(th);
         });
         tableHead.appendChild(trTitle);
-      
+
         let tableBody = document.createElement("tbody");
 
         let tr = document.createElement("tr");
@@ -73,25 +74,30 @@ function App() {
         <a href="addproduct">Add Product</a>
         <a href="addseller">Add Seller</a>
         <a href="changeowner">Change Product Owner</a>
-        <a className={styles.active} href="queryseller">Query Seller</a>
+        <a className={styles.active} href="queryseller">
+          Query Seller
+        </a>
         <a href="queryallsellers">Query All Sellers</a>
         <a href="queryconsumermanu">Query Consumer</a>
-        <a href="queryallconsumersmanu">Query All Consumers</a> 
+        <a href="queryallconsumersmanu">Query All Consumers</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`}}>
-      <form onSubmit={QuerySeller}>
-        <input
-          value={sellerId}
-          onChange={(e) => setSellerId(e.target.value)}
-          type="text"
-          placeholder="Seller Number"
-        />
-        <br />
+      <div
+        className={styles.forms}
+        style={{ backgroundImage: `url(${background})` }}
+      >
+        <form onSubmit={QuerySeller}>
+          <input
+            value={sellerId}
+            onChange={(e) => setSellerId(e.target.value)}
+            type="text"
+            placeholder="Seller Number"
+          />
+          <br />
 
-        <input type="submit" value="Query Seller" />
-        <container id="container"></container>
-      </form>
+          <input type="submit" value="Query Seller" />
+          <container id="container"></container>
+        </form>
       </div>
     </div>
   );

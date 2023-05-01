@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route} from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Login from "./pages/LoginUser";
 import Register from "./pages/RegisterUser";
 import AddProduct from "./pages/AddProduct";
@@ -28,12 +28,14 @@ import AddReview from "./pages/AddReview";
 import QueryReview from "./pages/QueryReview";
 import { Switch } from "react-router-dom/cjs/react-router-dom.min";
 
+const BASE_URL = process.env.BASE_URL;
+
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="/register" exact component={Register} /> 
+          <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
           <Route path="/addproduct" exact component={AddProduct} />
           <Route path="/addseller" exact component={AddSeller} />
@@ -47,11 +49,27 @@ const App = () => {
           <Route path="/queryconsumer" exact component={QueryConsumer} />
           <Route path="/querytransaction" exact component={QueryTransaction} />
           <Route path="/queryassethistory" exact component={QueryAsset} />
-          <Route path="/queryallconsumers" exact component={QueryAllConsumers} />
-          <Route path="/queryallconsumersmanu" exact component={QueryAllConsumersManu}/>
-          <Route path="/queryconsumermanu" exact component={QueryConsumerManu} />
+          <Route
+            path="/queryallconsumers"
+            exact
+            component={QueryAllConsumers}
+          />
+          <Route
+            path="/queryallconsumersmanu"
+            exact
+            component={QueryAllConsumersManu}
+          />
+          <Route
+            path="/queryconsumermanu"
+            exact
+            component={QueryConsumerManu}
+          />
           <Route path="/queryallsellers" exact component={QueryAllSellers} />
-          <Route path="/queryconsumercontact" exact component={QueryConsumerByContactNumber}/>
+          <Route
+            path="/queryconsumercontact"
+            exact
+            component={QueryConsumerByContactNumber}
+          />
           <Route path="/sellerlogin" exact component={SellerLogin} />
           <Route path="/consumerlogin" exact component={ConsumerLogin} />
           <Route path="/" exact component={HomePage} />

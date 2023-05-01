@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "../home.module.css";
 import background from "/home/digant/FYP/api/client/src/images/factory.png";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
-
   const [ownerName, setItem] = useState("");
 
   async function QueryOwnerProducts(event) {
@@ -41,7 +41,7 @@ function App() {
           "Price",
           "Size",
           "Manufacturer",
-          "Seller Id"
+          "Seller Id",
         ];
         let tableHead = document.createElement("thead");
         let trTitle = document.createElement("tr");
@@ -52,9 +52,9 @@ function App() {
           trTitle.appendChild(th);
         });
         tableHead.appendChild(trTitle);
-      
+
         let tableBody = document.createElement("tbody");
-        
+
         data.forEach((item) => {
           let tr = document.createElement("tr");
 
@@ -89,25 +89,33 @@ function App() {
         <a href="addconsumer">Add Consumer</a>
         <a href="queryprod">Query Product</a>
         <a href="queryall">Query All Products</a>
-        <a className={styles.active} href="queryownerprod">Query Product Manufacturer</a>
+        <a className={styles.active} href="queryownerprod">
+          Query Product Manufacturer
+        </a>
         <a href="queryconsumer">Query Consumer</a>
         <a href="queryallconsumers">Query All Consumers</a>
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 500px`}}>
-      <form onSubmit={QueryOwnerProducts}>
-        <input
-          value={ownerName}
-          onChange={(e) => setItem(e.target.value)}
-          type="text"
-          placeholder="Manufacturer"
-        />
-        <br />
+      <div
+        className={styles.forms}
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: `500px 500px`,
+        }}
+      >
+        <form onSubmit={QueryOwnerProducts}>
+          <input
+            value={ownerName}
+            onChange={(e) => setItem(e.target.value)}
+            type="text"
+            placeholder="Manufacturer"
+          />
+          <br />
 
-        <input type="submit" value="Query Products from Manufacturer" />
-        <container id="container"></container>
-      </form>
+          <input type="submit" value="Query Products from Manufacturer" />
+          <container id="container"></container>
+        </form>
       </div>
     </div>
   );

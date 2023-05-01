@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/factory.png"
+import background from "/home/digant/FYP/api/client/src/images/factory.png";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
-  
   const [ProductId, setProductId] = useState("");
   const [Owner, setOwner] = useState("");
 
@@ -30,7 +30,7 @@ function App() {
       .then(function (data) {
         alert("Product ownership changed successfully");
         console.log(data);
-        window.location.href = "http://localhost:3000/changeowner";
+        window.location.href = BASE_URL + "changeowner";
         window.location.reload(true);
       })
       .catch((error) => console.error("Error:", error));
@@ -41,31 +41,39 @@ function App() {
       <div className={styles.topnav}>
         <a href="addproduct">Add Product</a>
         <a href="addseller">Add Seller</a>
-        <a className={styles.active} href="changeowner">Change Product Owner</a>
+        <a className={styles.active} href="changeowner">
+          Change Product Owner
+        </a>
         <a href="queryseller">Query Seller</a>
         <a href="queryallsellers">Query All Sellers</a>
         <a href="queryconsumermanu">Query Consumer</a>
-        <a href="queryallconsumersmanu">Query All Consumers</a> 
+        <a href="queryallconsumersmanu">Query All Consumers</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 500px`}}>
-      <form onSubmit={ChangeOwnership}>
-        <input
-          value={ProductId}
-          onChange={(e) => setProductId(e.target.value)}
-          type="text"
-          placeholder="Item Number"
-        />
-        <br />
-        <input
-          value={Owner}
-          onChange={(e) => setOwner(e.target.value)}
-          type="text"
-          placeholder="Seller Name"
-        />
-        <br />
-        <input type="submit" value="Change Owner" />
-      </form>
+      <div
+        className={styles.forms}
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: `500px 500px`,
+        }}
+      >
+        <form onSubmit={ChangeOwnership}>
+          <input
+            value={ProductId}
+            onChange={(e) => setProductId(e.target.value)}
+            type="text"
+            placeholder="Item Number"
+          />
+          <br />
+          <input
+            value={Owner}
+            onChange={(e) => setOwner(e.target.value)}
+            type="text"
+            placeholder="Seller Name"
+          />
+          <br />
+          <input type="submit" value="Change Owner" />
+        </form>
       </div>
     </div>
   );

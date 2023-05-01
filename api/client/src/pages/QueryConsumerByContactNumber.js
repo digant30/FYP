@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/consumer.jpg"
+import background from "/home/digant/FYP/api/client/src/images/consumer.jpg";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
-
   const [PhoneNumber, setPhoneNumber] = useState("");
 
   async function QueryProductByConsumerNumber(event) {
@@ -43,7 +43,7 @@ function App() {
           "Consumer Name",
           "Product Id",
           "Seller Id",
-          "Seller Name"
+          "Seller Name",
         ];
         let tableHead = document.createElement("thead");
         let trTitle = document.createElement("tr");
@@ -54,9 +54,9 @@ function App() {
           trTitle.appendChild(th);
         });
         tableHead.appendChild(trTitle);
-      
+
         let tableBody = document.createElement("tbody");
-        
+
         data.forEach((item) => {
           let tr = document.createElement("tr");
 
@@ -94,21 +94,29 @@ function App() {
         <a href="queryownerprod">Query Product Manufacturer</a>
         <a href="queryconsumer">Query Consumer</a>
         <a href="queryallconsumers">Query All Consumers</a>
-        <a className={styles.active} href="queryconsumercontact">Query Consumer By Contact</a>
+        <a className={styles.active} href="queryconsumercontact">
+          Query Consumer By Contact
+        </a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 500px`}}>
-      <form onSubmit={QueryProductByConsumerNumber}>
-        <input
-          value={PhoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-          type="text"
-          placeholder="Phone Number"
-        />
-        <br />
-        <input type="submit" value="Query Consumer Products" />
-        <container id="container"></container>
-      </form>
+      <div
+        className={styles.forms}
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: `500px 500px`,
+        }}
+      >
+        <form onSubmit={QueryProductByConsumerNumber}>
+          <input
+            value={PhoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            type="text"
+            placeholder="Phone Number"
+          />
+          <br />
+          <input type="submit" value="Query Consumer Products" />
+          <container id="container"></container>
+        </form>
       </div>
     </div>
   );

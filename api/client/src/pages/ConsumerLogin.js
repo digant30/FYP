@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../home.module.css";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
   const [username, setUsername] = useState("");
@@ -23,19 +24,16 @@ function App() {
         return response.json();
       })
       .then(function (data) {
-        if(data.success === false){
+        if (data.success === false) {
           window.alert("Incorrect Username/Password");
-          window.location.href = "http://localhost:3000/consumerlogin";
-        }
-        else{
-        console.log(data);
-        console.log(localStorage.getItem("token"));
-        window.location.href = "http://localhost:3000/authenticate";
+          window.location.href = BASE_URL + "consumerlogin";
+        } else {
+          console.log(data);
+          console.log(localStorage.getItem("token"));
+          window.location.href = BASE_URL + "authenticate";
         }
       })
       .catch((error) => console.error("Error:", error));
-
-    
   }
 
   return (

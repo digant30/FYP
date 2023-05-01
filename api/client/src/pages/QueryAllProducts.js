@@ -1,8 +1,8 @@
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/product.jpeg"
+import background from "/home/digant/FYP/api/client/src/images/product.jpeg";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
-  
   async function QueryAllProducts(event) {
     event.preventDefault();
     console.time();
@@ -25,7 +25,7 @@ function App() {
         console.log(data);
 
         let container = document.getElementById("container");
-        
+
         let table = document.createElement("table");
         table.setAttribute("class", styles.styledtable);
 
@@ -38,7 +38,7 @@ function App() {
           "Manufacturer",
           "Price",
           "Seller Id",
-          "Size"
+          "Size",
         ];
         let tableHead = document.createElement("thead");
         let trTitle = document.createElement("tr");
@@ -49,7 +49,7 @@ function App() {
           trTitle.appendChild(th);
         });
         tableHead.appendChild(trTitle);
-      
+
         let tableBody = document.createElement("tbody");
         data.forEach((item) => {
           let tr = document.createElement("tr");
@@ -93,12 +93,17 @@ function App() {
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`, backgroundSize: `500px 200px`}}>
-      <form onSubmit={QueryAllProducts}>
-        
-        <input type="submit" value="Query All" />
-        <container id="container"></container>
-      </form>
+      <div
+        className={styles.forms}
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: `500px 200px`,
+        }}
+      >
+        <form onSubmit={QueryAllProducts}>
+          <input type="submit" value="Query All" />
+          <container id="container"></container>
+        </form>
       </div>
     </div>
   );

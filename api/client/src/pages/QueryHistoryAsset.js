@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/fake.jpg"
+import background from "/home/digant/FYP/api/client/src/images/fake.jpg";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
-
   const [Item, setItem] = useState("");
 
   async function QueryAssetHistory(event) {
@@ -44,7 +44,7 @@ function App() {
           "Manufacturer",
           "Seller Id",
           "TimeStamp",
-          "IsDelete"
+          "IsDelete",
         ];
         let tableHead = document.createElement("thead");
         let trTitle = document.createElement("tr");
@@ -55,9 +55,9 @@ function App() {
           trTitle.appendChild(th);
         });
         tableHead.appendChild(trTitle);
-      
+
         let tableBody = document.createElement("tbody");
-        
+
         data.forEach((item) => {
           let tr = document.createElement("tr");
 
@@ -90,24 +90,29 @@ function App() {
     <div>
       <div className={styles.topnav}>
         <a href="authenticate">Authenticate</a>
-        <a className={styles.active} href="queryassethistory">Query Asset</a>
+        <a className={styles.active} href="queryassethistory">
+          Query Asset
+        </a>
         <a href="addreview">Add Review</a>
         <a href="queryreview">Query Review</a>
         <a href="/">Logout</a>
       </div>
-      <div className={styles.forms} style={{backgroundImage: `url(${background})`}}>
-      <form onSubmit={QueryAssetHistory}>
-        <input
-          value={Item}
-          onChange={(e) => setItem(e.target.value)}
-          type="text"
-          placeholder="Item Number"
-        />
-        <br />
+      <div
+        className={styles.forms}
+        style={{ backgroundImage: `url(${background})` }}
+      >
+        <form onSubmit={QueryAssetHistory}>
+          <input
+            value={Item}
+            onChange={(e) => setItem(e.target.value)}
+            type="text"
+            placeholder="Item Number"
+          />
+          <br />
 
-        <input type="submit" value="Query Asset History" />
-        <container id="container"></container>
-      </form>
+          <input type="submit" value="Query Asset History" />
+          <container id="container"></container>
+        </form>
       </div>
     </div>
   );

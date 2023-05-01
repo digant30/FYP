@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styles from "../home.module.css";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+
   async function LoginUser(event) {
     event.preventDefault();
 
@@ -23,14 +24,13 @@ function App() {
         return response.json();
       })
       .then(function (data) {
-        if(data.success === false){
+        if (data.success === false) {
           window.alert("Incorrect Username/Password");
-          window.location.href = "http://localhost:3000/login";
-        }
-        else{
-        console.log(data);
-        console.log(localStorage.getItem("token"));
-        window.location.href = "http://localhost:3000/addproduct";
+          window.location.href = BASE_URL + "login";
+        } else {
+          console.log(data);
+          console.log(localStorage.getItem("token"));
+          window.location.href = BASE_URL + "addproduct";
         }
       })
       .catch((error) => console.error("Error:", error));

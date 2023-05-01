@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styles from "../home.module.css";
+const BASE_URL = process.env.BASE_URL;
 
 function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+
   async function registerUser(event) {
     event.preventDefault();
 
@@ -24,7 +25,7 @@ function App() {
       .then(function (data) {
         console.log(data);
         localStorage.setItem("token", data.token);
-        window.location.href = "http://localhost:3000/register";
+        window.location.href = BASE_URL + "register";
       })
       .catch((error) => console.error("Error:", error));
   }
