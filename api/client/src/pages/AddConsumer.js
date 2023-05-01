@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/consumer.jpg";
+// import background from "/home/digant/FYP/api/client/src/images/consumer.jpg";
 
 const BASE_URL = process.env.BASE_URL;
 
@@ -67,14 +67,7 @@ function App() {
         <a href="queryconsumercontact">Query Consumer By Contact</a>
         <a href="/">Logout</a>
       </div>
-      <div
-        className={styles.forms}
-        style={{
-          backgroundImage: `url(${background})`,
-          backgroundSize: `500px 500px`,
-          backgroundColor: `white`,
-        }}
-      >
+      <div className={styles.forms}>
         <form onSubmit={AddConsumer}>
           <input
             value={Consumer}

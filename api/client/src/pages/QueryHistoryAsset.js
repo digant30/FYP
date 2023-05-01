@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/fake.jpg";
+// import background from "/home/digant/FYP/api/client/src/images/fake.jpg";
 const BASE_URL = process.env.BASE_URL;
 
 function App() {
@@ -99,7 +99,7 @@ function App() {
       </div>
       <div
         className={styles.forms}
-        style={{ backgroundImage: `url(${background})` }}
+        // style={{ backgroundImage: `url(${background})` }}
       >
         <form onSubmit={QueryAssetHistory}>
           <input

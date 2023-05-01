@@ -1,11 +1,11 @@
 
-.main{
+/* .main{
   background-image: url(/home/digant/FYP/api/client/src/images/pic1.png);
   background-repeat: no-repeat;
   background-size: contain;
   height: 90vh;
 
-}
+} */
 
 .topnav {
   background-color: #333;
@@ -23,7 +23,7 @@
   border-radius: 10px;
 }
 
-.form{
+/* .form{
   background-image: url(/home/digant/FYP/api/client/src/images/register.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -43,7 +43,7 @@
   text-align: center;
   align-items: center;
   color: white;
-}
+} */
 
 
 /* Style the links inside the navigation bar */

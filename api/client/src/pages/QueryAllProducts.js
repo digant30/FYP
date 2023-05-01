@@ -1,5 +1,5 @@
 import styles from "../home.module.css";
-import background from "/home/digant/FYP/api/client/src/images/product.jpeg";
+// import background from "/home/digant/FYP/api/client/src/images/product.jpeg";
 const BASE_URL = process.env.BASE_URL;
 
 function App() {
@@ -95,10 +95,10 @@ function App() {
       </div>
       <div
         className={styles.forms}
-        style={{
-          backgroundImage: `url(${background})`,
-          backgroundSize: `500px 200px`,
-        }}
+        // style={{
+        //   backgroundImage: `url(${background})`,
+        //   backgroundSize: `500px 200px`,
+        // }}
       >
         <form onSubmit={QueryAllProducts}>
           <input type="submit" value="Query All" />
